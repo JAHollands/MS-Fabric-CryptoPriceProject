@@ -39,12 +39,18 @@ import requests
 
 # MARKDOWN ********************
 
+# # Params
+# - Parameters from control pipeline
+
+# MARKDOWN ********************
+
 # # Create variables
 # - records, empty list to store values
 # - load_ts, runtime datetime value to store
 
 # CELL ********************
 
+coin_list = ['bitcoin', 'ethereum']
 records = []
 load_ts = datetime.utcnow().isoformat()
 
@@ -65,7 +71,7 @@ load_ts = datetime.utcnow().isoformat()
 
 # CELL ********************
 
-for coin_id in ["bitcoin", "ethereum"]:
+for coin_id in coin_list:
     r = requests.get(f"https://api.coingecko.com/api/v3/coins/{coin_id}/tickers")
     for t in r.json().get("tickers", []):
         records.append({
@@ -134,6 +140,17 @@ df = spark.createDataFrame(records, schema=schema)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# CELL ********************
+
+display(df)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
 # MARKDOWN ********************
 
 # # Append data to our Bronze delta table
@@ -141,7 +158,7 @@ df = spark.createDataFrame(records, schema=schema)
 
 # CELL ********************
 
-df.write.format('delta').mode('append').partitionBy('date').save('Tables/bronze.coin_exchange_prices')
+df.write.format('delta').mode('append').partitionBy('date').save('Tables/bronze_coin_exchange_prices')
 
 # METADATA ********************
 
