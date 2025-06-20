@@ -39,6 +39,23 @@ import requests
 
 # MARKDOWN ********************
 
+# # Params
+# - Parameters from control pipeline
+
+# PARAMETERS CELL ********************
+
+bronze_table = spark.conf.get("Bronze_Table_Name", "coin_exchange_prices_dev")
+coin_list = spark.conf.get("Coin_List", "bitcoin,ethereum").split(",")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
 # # Create variables
 # - records, empty list to store values
 # - load_ts, runtime datetime value to store
@@ -65,7 +82,7 @@ load_ts = datetime.utcnow().isoformat()
 
 # CELL ********************
 
-for coin_id in ["bitcoin", "ethereum"]:
+for coin_id in coin_list:
     r = requests.get(f"https://api.coingecko.com/api/v3/coins/{coin_id}/tickers")
     for t in r.json().get("tickers", []):
         records.append({

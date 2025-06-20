@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "DP_Crypto_Orch"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a71a388b-5f8b-8db8-40f9-c16cd9af5d1d"
+  }
+}
