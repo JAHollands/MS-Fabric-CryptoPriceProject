@@ -2,60 +2,9 @@
   "properties": {
     "activities": [
       {
-        "name": "Ingestion Notebook",
-        "type": "TridentNotebook",
-        "dependsOn": [],
         "policy": {
           "timeout": "0.12:00:00",
           "retry": 0,
           "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "typeProperties": {
-          "notebookId": {
-            "value": "@pipeline().parameters.Bronze_Notebook",
-            "type": "Expression"
-          },
-          "workspaceId": {
-            "value": "@pipeline().parameters.Workspace",
-            "type": "Expression"
-          },
-          "parameters": {
-            "bronze_table": {
-              "value": {
-                "value": "@pipeline().parameters.Bronze_Table",
-                "type": "Expression"
-              },
-              "type": "string"
-            },
-            "coin_list": {
-              "value": {
-                "value": "@pipeline().parameters.Coin_list",
-                "type": "Expression"
-              },
-              "type": "string"
-            }
-          }
-        }
-      }
-    ],
-    "parameters": {
-      "Bronze_Lakehouse": {
-        "type": "string"
-      },
-      "Bronze_Table": {
-        "type": "string"
-      },
-      "Workspace": {
-        "type": "string"
-      },
-      "Bronze_Notebook": {
-        "type": "string"
-      },
-      "Coin_list": {
-        "type": "string"
-      }
-    }
   }
 }

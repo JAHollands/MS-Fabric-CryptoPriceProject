@@ -42,18 +42,6 @@ import requests
 # # Params
 # - Parameters from control pipeline
 
-# PARAMETERS CELL ********************
-
-bronze_table = spark.conf.get("Bronze_Table_Name", "coin_exchange_prices_dev")
-coin_list = spark.conf.get("Coin_List", "bitcoin,ethereum").split(",")
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
 # MARKDOWN ********************
 
 # # Create variables
@@ -62,6 +50,7 @@ coin_list = spark.conf.get("Coin_List", "bitcoin,ethereum").split(",")
 
 # CELL ********************
 
+coin_list = ['bitcoin', 'ethereum']
 records = []
 load_ts = datetime.utcnow().isoformat()
 
@@ -151,6 +140,17 @@ df = spark.createDataFrame(records, schema=schema)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# CELL ********************
+
+display(df)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
 # MARKDOWN ********************
 
 # # Append data to our Bronze delta table
@@ -158,7 +158,7 @@ df = spark.createDataFrame(records, schema=schema)
 
 # CELL ********************
 
-df.write.format('delta').mode('append').partitionBy('date').save('Tables/bronze.coin_exchange_prices')
+df.write.format('delta').mode('append').partitionBy('date').save('Tables/bronze_coin_exchange_prices')
 
 # METADATA ********************
 
