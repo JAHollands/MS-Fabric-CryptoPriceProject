@@ -1,0 +1,206 @@
+{
+  "name": "{{Dataset_Name}}",
+  "compatibilityLevel": 1604,
+  "model": {
+    "name": "{{Dataset_Name}}",
+    "culture": "en-US",
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "silver_coin_exchange_prices",
+        "sourceLineageTag": "[staging].[silver_coin_exchange_prices]",
+        "columns": [
+          {
+            "name": "coin_id",
+            "dataType": "string",
+            "sourceColumn": "coin_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "coin_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "exchange",
+            "dataType": "string",
+            "sourceColumn": "exchange",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "exchange",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "base",
+            "dataType": "string",
+            "sourceColumn": "base",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "base",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "target",
+            "dataType": "string",
+            "sourceColumn": "target",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "target",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "last_price",
+            "dataType": "double",
+            "sourceColumn": "last_price",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "last_price",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "volume",
+            "dataType": "double",
+            "sourceColumn": "volume",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "volume",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "trust_score",
+            "dataType": "string",
+            "sourceColumn": "trust_score",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "trust_score",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "timestamp",
+            "dataType": "string",
+            "sourceColumn": "timestamp",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "timestamp",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "load_ts",
+            "dataType": "string",
+            "sourceColumn": "load_ts",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "load_ts",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "date",
+            "dataType": "string",
+            "sourceColumn": "date",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "silver_coin_exchange_prices",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "staging"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "kind": "m",
+        "expression": "let\n    database = {{TDS_Endpoint}}\nin\n    database\n"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "SourceLineageTagType",
+        "value": "DatabaseFullyQualifiedName"
+      }
+    ]
+  }
+}
